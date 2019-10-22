@@ -1,0 +1,9 @@
+.my-header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  font-family: Montserrat;
+  font-size: 30px;
+  color: #c90c87;
+  background-color: #fff;
+}

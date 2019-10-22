@@ -1,0 +1,9 @@
+.my-wrapper {
+  max-width: 90%;
+  margin: auto;
+  margin-top: 70px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  color: #c90c87;
+}

@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+.poke-div {
+  flex: 0 0 30%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  background-color: #fff;
+  animation: animateOpacity 1s;
+  background-color: #fff;
+  font-family: Montserrat;
+}
+
+.poke-name,
+.poke-type,
+.poke-base {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+}
+.poke-name {
+  background-color: #16b0c7;
+  color: #fff;
+  font-size: 15px;
+  padding: 10px 10px;
+}
+.poke-type {
+  flex: 0 0 100%;
+  background-color: #f4e1ed;
+  padding: 15px 15px;
+  font-size: 14px;
+}
+.poke-base {
+  background-color: #bb5587;
+  padding: 15px 15px;
+  color: #fff;
+  font-size: 14px;
+}
+.poke-name span,
+.poke-type span,
+.poke-base span {
+  flex: 0 0 100%;
+}
+
+@keyframes animateOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

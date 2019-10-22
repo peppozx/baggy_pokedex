@@ -1,0 +1,21 @@
+.my-search {
+  background-color: #f4e1ed;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  height: 100px;
+  border-radius: 15px;
+}
+.listar-pokemons {
+  padding: 15px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Montserrat;
+  background-color: #16b0c7;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 10px;
+  width: 100px;
+}
