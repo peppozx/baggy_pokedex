@@ -11,3 +11,17 @@ export function loadingPokemons(isLoading) {
     isLoading
   };
 }
+
+export function filterByName(name) {
+  return {
+    type: "FILTER_BY_NAME",
+    name
+  };
+}
+
+export function isFilteredPokemons(isFiltered) {
+  return {
+    type: "SET_FILTER",
+    isFiltered
+  };
+}

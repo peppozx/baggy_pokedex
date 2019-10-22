@@ -3,7 +3,6 @@ import "../styles/pokeitem.css";
 import { format } from "util";
 
 export default function PokeItem({ pokemon }) {
-  console.log(pokemon);
   const getFormattedArrayOfAttributes = base => {
     let arrayOfAttributes = [];
     for (let key in base) {

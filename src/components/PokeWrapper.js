@@ -12,16 +12,35 @@ class PokeWrapper extends Component {
     this.state = {};
   }
   listPokemons() {
-    return this.props.pokemons.map(pokemon => <PokeItem key={pokemon.id} pokemon={pokemon} />);
+    return this.props.pokemons.map(pokemon => (
+      <PokeItem key={pokemon.id} pokemon={pokemon} />
+    ));
+  }
+  listFilteredPokemons() {
+    return this.props.filteredPokemons.map(pokemon => (
+      <PokeItem key={pokemon.id} pokemon={pokemon} />
+    ));
+  }
+  loadNormalPokemons() {
+    return this.props.loadingPokemons ? (
+      <img src={spinner} />
+    ) : (
+      this.listPokemons()
+    );
+  }
+  loadFilteredPokemons() {
+    return this.props.loadingPokemons ? (
+      <img src={spinner} />
+    ) : (
+      this.listFilteredPokemons()
+    );
   }
   render() {
     return (
       <div className="my-wrapper">
-        {this.props.loadingPokemons ? (
-          <img src={spinner} />
-        ) : (
-          this.listPokemons()
-        )}
+        {!this.props.isFilteredPokemons
+          ? this.loadNormalPokemons()
+          : this.loadFilteredPokemons()}
       </div>
     );
   }
@@ -29,7 +48,9 @@ class PokeWrapper extends Component {
 
 const mapStateToProps = state => ({
   pokemons: state.pokedex.pokemons,
-  loadingPokemons: state.pokedex.loadingPokemons
+  loadingPokemons: state.pokedex.loadingPokemons,
+  isFilteredPokemons: state.pokedex.isFilteredPokemons,
+  filteredPokemons: state.pokedex.filteredPokemons
 });
 
 const mapDispatchToProps = dispatch => ({
