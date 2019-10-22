@@ -47,3 +47,8 @@
   border-radius: 10px;
   width: 70px;
 }
+
+.select-filter {
+  height: 33px;
+  align-self: center;
+}

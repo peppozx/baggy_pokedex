@@ -11,7 +11,8 @@ class Search extends Component {
     super(props);
     this.state = {
       pokemons: [],
-      name: ""
+      name: "",
+      filterType: "name"
     };
   }
   getPokemons = () => {
@@ -27,10 +28,10 @@ class Search extends Component {
         }, 1500);
       });
   };
-  getFilteredPokemons = name => {
+  getFilteredPokemons = (name, type) => {
     this.props.setFilter(true);
     this.props.loadPokemons(true);
-    this.props.filterPokemons(name);
+    this.props.filterPokemons(name, type);
     setTimeout(() => {
       this.props.loadPokemons(false);
     }, 1500);
@@ -51,6 +52,12 @@ class Search extends Component {
       this.props.loadPokemons(false);
     }, 1000);
   };
+  selectFilterType = e => {
+    this.setState({
+      ...this.state,
+      filterType: e.target.value
+    });
+  };
   render() {
     return (
       <div className="my-search">
@@ -58,6 +65,16 @@ class Search extends Component {
           <span>Listar</span>
         </div>
         <div className="filtrar-nome">
+          <select
+            className="select-filter"
+            onChange={this.selectFilterType}
+            value={this.state.filterType}
+          >
+            <option value="name" selected>
+              Name
+            </option>
+            <option value="type">Type</option>
+          </select>
           <input
             type="text"
             placeholder="Name (English)"
@@ -66,7 +83,9 @@ class Search extends Component {
           />
           <div
             className="filtrar-button"
-            onClick={() => this.getFilteredPokemons(this.state.name)}
+            onClick={() =>
+              this.getFilteredPokemons(this.state.name, this.state.filterType)
+            }
           >
             <span>Filtrar</span>
           </div>
@@ -83,7 +102,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setPokemons: pokelist => dispatch(PokeActions.setPokemons(pokelist)),
   loadPokemons: isLoading => dispatch(PokeActions.loadingPokemons(isLoading)),
-  filterPokemons: name => dispatch(PokeActions.filterByName(name)),
+  filterPokemons: (name, type) =>
+    dispatch(PokeActions.filterByName(name, type)),
   setFilter: is => dispatch(PokeActions.isFilteredPokemons(is))
 });
 

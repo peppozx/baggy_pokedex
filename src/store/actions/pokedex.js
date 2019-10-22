@@ -12,10 +12,11 @@ export function loadingPokemons(isLoading) {
   };
 }
 
-export function filterByName(name) {
+export function filterByName(name, type) {
   return {
     type: "FILTER_BY_NAME",
-    name
+    name,
+    filter: type
   };
 }
 

@@ -5,6 +5,15 @@ const INITIAL_STATE = {
   filteredPokemons: []
 };
 
+function isPokemonType(pokemon, type) {
+  for (let i = 0; i < pokemon.type.length; i++) {
+    if (pokemon.type[i] === type) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function pokedex(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "SET_FILTER":
@@ -26,14 +35,25 @@ function pokedex(state = INITIAL_STATE, action) {
       };
       break;
     case "FILTER_BY_NAME":
-      return {
-        ...state,
-        filteredPokemons: [
-          ...state.pokemons.filter(
-            pokemon => pokemon.name.english === action.name
-          )
-        ]
-      };
+      if (action.filter === "name") {
+        return {
+          ...state,
+          filteredPokemons: [
+            ...state.pokemons.filter(
+              pokemon => pokemon.name.english === action.name
+            )
+          ]
+        };
+      } else if (action.filter === "type") {
+        return {
+          ...state,
+          filteredPokemons: [
+            ...state.pokemons.filter(pokemon =>
+              isPokemonType(pokemon, action.name)
+            )
+          ]
+        };
+      }
       break;
   }
   return state;
