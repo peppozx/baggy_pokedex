@@ -12,7 +12,8 @@ class Search extends Component {
     this.state = {
       pokemons: [],
       name: "",
-      filterType: "name"
+      filterType: "name",
+      nameCompletions: []
     };
   }
   componentDidMount() {
@@ -32,6 +33,10 @@ class Search extends Component {
       });
   };
   getFilteredPokemons = (name, type) => {
+    this.setState({
+      ...this.state,
+      nameCompletions: []
+    });
     this.props.setFilter(true);
     this.props.loadPokemons(true);
     this.props.filterPokemons(name, type);
@@ -39,11 +44,46 @@ class Search extends Component {
       this.props.loadPokemons(false);
     }, 1500);
   };
-  setName = e => {
-    this.setState({
-      ...this.state,
-      name: e.target.value
+  getPossibleNames = name => {
+    let names = [];
+    let possibleNames = this.props.pokemons.filter(
+      pokemon =>
+        pokemon.name.english
+          .substring(0, this.state.name.length)
+          .toUpperCase() === this.state.name.toUpperCase()
+    );
+    possibleNames.forEach(pokemon => {
+      names.push(pokemon.name.english);
     });
+    return names;
+  };
+  updateName = name => {
+    this.setState(
+      {
+        ...this.state,
+        name: name
+      },
+      () => {
+        this.setState({
+          ...this.state,
+          nameCompletions: []
+        });
+      }
+    );
+  };
+  setName = e => {
+    this.setState(
+      {
+        ...this.state,
+        name: e.target.value
+      },
+      () => {
+        this.setState({
+          ...this.state,
+          nameCompletions: this.getPossibleNames(this.state.name)
+        });
+      }
+    );
   };
   // componentDidMount() {
   //   this.getPokemons();
@@ -62,6 +102,12 @@ class Search extends Component {
     });
   };
   render() {
+    const completionsStyle = {
+      display:
+        this.state.nameCompletions.length >= 1 && this.state.name.length >= 1
+          ? "flex"
+          : "none"
+    };
     return (
       <div className="my-search">
         <div className="listar-pokemons" onClick={this.getPokemons}>
@@ -82,6 +128,15 @@ class Search extends Component {
             onChange={this.setName}
             value={this.state.name}
           />
+          <div className="name-completions" style={completionsStyle}>
+            {this.state.name.length >= 1
+              ? this.state.nameCompletions.map(name => (
+                  <span value={name} onClick={() => this.updateName(name)}>
+                    {name}
+                  </span>
+                ))
+              : ""}
+          </div>
           <div
             className="filtrar-button"
             onClick={() =>

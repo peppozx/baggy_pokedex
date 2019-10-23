@@ -36,6 +36,7 @@
   display: flex;
   flex-flow: row wrap;
   align-content: center;
+  position: relative;
 }
 .filtrar-nome input {
   height: 30px;
@@ -65,4 +66,35 @@
   margin-right: 5px;
   height: 31px;
   align-self: center;
+}
+
+.name-completions {
+  width: 150px;
+  position: absolute;
+  right: 85px;
+  top: 40px;
+  background-color: #bb5587;
+  color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  overflow-y: scroll;
+  z-index: 9999;
+  animation: animate 0.6s;
+  font-family: Montserrat;
+  max-height: 100px;
+}
+.name-completions span {
+  flex: 0 0 100%;
+  cursor: pointer;
+  padding: 5px 5px;
+}
+
+@keyframes animate {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100px;
+  }
 }
