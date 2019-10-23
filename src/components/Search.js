@@ -15,6 +15,24 @@ class Search extends Component {
       filterType: "name",
       nameCompletions: []
     };
+    this.types = [
+      "Grass",
+      "Bug",
+      "Flying",
+      "Poison",
+      "Normal",
+      "Electric",
+      "Ground",
+      "Fairy",
+      "Fire",
+      "Water",
+      "Fighting",
+      "Psychic",
+      "Rock",
+      "Ice",
+      "Ghost",
+      "Dragon"
+    ];
   }
   componentDidMount() {
     this.getPokemons();
@@ -46,15 +64,24 @@ class Search extends Component {
   };
   getPossibleNames = name => {
     let names = [];
-    let possibleNames = this.props.pokemons.filter(
-      pokemon =>
-        pokemon.name.english
-          .substring(0, this.state.name.length)
-          .toUpperCase() === this.state.name.toUpperCase()
-    );
-    possibleNames.forEach(pokemon => {
-      names.push(pokemon.name.english);
-    });
+    if (this.state.filterType === "name") {
+      let possibleNames = this.props.pokemons.filter(
+        pokemon =>
+          pokemon.name.english
+            .substring(0, this.state.name.length)
+            .toUpperCase() === this.state.name.toUpperCase()
+      );
+      possibleNames.forEach(pokemon => {
+        names.push(pokemon.name.english);
+      });
+    } else if (this.state.filterType === "type") {
+      let possibleNames = this.types.filter(
+        type =>
+          type.substring(0, this.state.name.length).toUpperCase() ===
+          this.state.name.toUpperCase()
+      );
+      names = possibleNames;
+    }
     return names;
   };
   updateName = name => {
@@ -98,7 +125,8 @@ class Search extends Component {
   selectFilterType = e => {
     this.setState({
       ...this.state,
-      filterType: e.target.value
+      filterType: e.target.value,
+      name: ""
     });
   };
   render() {

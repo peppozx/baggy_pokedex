@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 
 function isPokemonType(pokemon, type) {
   for (let i = 0; i < pokemon.type.length; i++) {
-    if (pokemon.type[i] === type) {
+    if (pokemon.type[i].toUpperCase() === type.toUpperCase()) {
       return true;
     }
   }
