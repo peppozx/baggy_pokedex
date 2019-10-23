@@ -35,23 +35,30 @@ function pokedex(state = INITIAL_STATE, action) {
       };
       break;
     case "FILTER_BY_NAME":
-      if (action.filter === "name") {
+      if (action.name) {
+        if (action.filter === "name") {
+          return {
+            ...state,
+            filteredPokemons: [
+              ...state.pokemons.filter(
+                pokemon => pokemon.name.english === action.name
+              )
+            ]
+          };
+        } else if (action.filter === "type") {
+          return {
+            ...state,
+            filteredPokemons: [
+              ...state.pokemons.filter(pokemon =>
+                isPokemonType(pokemon, action.name)
+              )
+            ]
+          };
+        }
+      } else {
         return {
           ...state,
-          filteredPokemons: [
-            ...state.pokemons.filter(
-              pokemon => pokemon.name.english === action.name
-            )
-          ]
-        };
-      } else if (action.filter === "type") {
-        return {
-          ...state,
-          filteredPokemons: [
-            ...state.pokemons.filter(pokemon =>
-              isPokemonType(pokemon, action.name)
-            )
-          ]
+          filteredPokemons: [...state.pokemons]
         };
       }
       break;

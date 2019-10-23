@@ -6,11 +6,11 @@
   display: flex;
   flex-flow: row wrap;
   align-content: center;
+  justify-content: center;
   height: 100px;
   border-radius: 15px;
 }
 .listar-pokemons {
-  margin-left: 100px;
   padding: 15px 15px;
   display: flex;
   justify-content: center;
@@ -21,10 +21,18 @@
   font-weight: 500;
   border-radius: 10px;
   width: 100px;
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+.listar-pokemons:hover,
+.filtrar-button:hover {
+  transition: 0.6s ease-out;
+  transform: scale(1.1);
 }
 
 .filtrar-nome {
-  margin-left: 200px;
+  margin-left: 50px;
   display: flex;
   flex-flow: row wrap;
   align-content: center;
@@ -33,6 +41,9 @@
   height: 30px;
   width: 150px;
   align-self: center;
+  border: solid 1px gray;
+  border-radius: 3px;
+  padding: 5px 5px;
 }
 
 .filtrar-button {
@@ -41,14 +52,17 @@
   justify-content: center;
   align-items: center;
   font-family: Montserrat;
-  background-color: #16b0c7;
+  background-color: #c90c87;
   color: #fff;
   font-weight: 500;
   border-radius: 10px;
   width: 70px;
+  cursor: pointer;
+  transition: 0.6s;
 }
 
 .select-filter {
-  height: 33px;
+  margin-right: 5px;
+  height: 31px;
   align-self: center;
 }

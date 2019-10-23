@@ -15,6 +15,9 @@ class Search extends Component {
       filterType: "name"
     };
   }
+  componentDidMount() {
+    this.getPokemons();
+  }
   getPokemons = () => {
     this.props.loadPokemons(true);
     this.props.setFilter(false);
@@ -62,7 +65,7 @@ class Search extends Component {
     return (
       <div className="my-search">
         <div className="listar-pokemons" onClick={this.getPokemons}>
-          <span>Listar</span>
+          <span>Load</span>
         </div>
         <div className="filtrar-nome">
           <select
@@ -70,9 +73,7 @@ class Search extends Component {
             onChange={this.selectFilterType}
             value={this.state.filterType}
           >
-            <option value="name" selected>
-              Name
-            </option>
+            <option value="name">Name</option>
             <option value="type">Type</option>
           </select>
           <input
@@ -87,7 +88,7 @@ class Search extends Component {
               this.getFilteredPokemons(this.state.name, this.state.filterType)
             }
           >
-            <span>Filtrar</span>
+            <span>Filter</span>
           </div>
         </div>
       </div>
