@@ -1,19 +1,7 @@
 import React from "react";
 import "../styles/pokeitem.css";
-import { format } from "util";
 
 export default function PokeItem({ pokemon }) {
-  const getFormattedArrayOfAttributes = base => {
-    let arrayOfAttributes = [];
-    for (let key in base) {
-      arrayOfAttributes.push({
-        name: key,
-        value: base[key]
-      });
-    }
-    return arrayOfAttributes;
-  };
-  const attributes = getFormattedArrayOfAttributes(pokemon.base);
   return (
     <div className="poke-div">
       <div className="poke-name">
@@ -29,14 +17,6 @@ export default function PokeItem({ pokemon }) {
           <span>{pokeType}</span>
         ))}
       </div>
-      {/*<div className="poke-base">
-        <p>Attributes:</p>
-        {attributes.map(attribute => (
-          <span>
-            {attribute.name}: {attribute.value}
-          </span>
-        ))}
-      </div> */}
     </div>
   );
 }
