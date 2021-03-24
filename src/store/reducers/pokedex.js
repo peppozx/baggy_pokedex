@@ -42,7 +42,7 @@ function pokedex(state = INITIAL_STATE, action) {
             filteredPokemons: [
               ...state.pokemons.filter(
                 pokemon =>
-                  pokemon.name.english.toUpperCase() ===
+                  pokemon.name.toUpperCase() ===
                   action.name.toUpperCase()
               )
             ]

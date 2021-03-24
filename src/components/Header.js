@@ -4,7 +4,7 @@ import "../styles/header.css";
 export default function Header() {
   return (
     <div className="my-header">
-      <p>Pokedex Bagy</p>
+      <p>Pokedex</p>
     </div>
   );
 }

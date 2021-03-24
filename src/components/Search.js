@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/search.css";
 
-import axios from "axios";
+import pokemons from '../pokemons';
 
 import { connect } from "react-redux";
 import * as PokeActions from "../store/actions/pokedex";
@@ -40,15 +40,8 @@ class Search extends Component {
   getPokemons = () => {
     this.props.loadPokemons(true);
     this.props.setFilter(false);
-    return axios
-      .get("http://desafiobagy.herokuapp.com/pokedex")
-      .then(res => res.data)
-      .then(data => {
-        this.props.setPokemons(data);
-        setTimeout(() => {
-          this.props.loadPokemons(false);
-        }, 1500);
-      });
+    this.props.setPokemons(pokemons);
+    this.props.loadPokemons(false);
   };
   getFilteredPokemons = (name, type) => {
     this.setState({
@@ -67,12 +60,12 @@ class Search extends Component {
     if (this.state.filterType === "name") {
       let possibleNames = this.props.pokemons.filter(
         pokemon =>
-          pokemon.name.english
+          pokemon.name
             .substring(0, this.state.name.length)
             .toUpperCase() === this.state.name.toUpperCase()
       );
       possibleNames.forEach(pokemon => {
-        names.push(pokemon.name.english);
+        names.push(pokemon.name);
       });
     } else if (this.state.filterType === "type") {
       let possibleNames = this.types.filter(

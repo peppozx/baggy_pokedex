@@ -18,10 +18,10 @@ export default function PokeItem({ pokemon }) {
     <div className="poke-div">
       <div className="poke-name">
         <b>Names:</b>
-        <span>Chinese: {pokemon.name.chinese}</span>
-        <span>English: {pokemon.name.english}</span>
-        <span>French: {pokemon.name.french}</span>
-        <span>Japanese: {pokemon.name.japanese}</span>
+        <span>Normal: {pokemon.name}</span>
+      </div>
+      <div class="poke-image">
+        <img height="50px" width="50px" src={pokemon.img}/>
       </div>
       <div className="poke-type">
         <b>Types:</b>
@@ -29,14 +29,14 @@ export default function PokeItem({ pokemon }) {
           <span>{pokeType}</span>
         ))}
       </div>
-      <div className="poke-base">
+      {/*<div className="poke-base">
         <p>Attributes:</p>
         {attributes.map(attribute => (
           <span>
             {attribute.name}: {attribute.value}
           </span>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

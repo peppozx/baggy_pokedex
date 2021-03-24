@@ -27,12 +27,20 @@
   flex-flow: row wrap;
   justify-content: center;
   text-align: center;
+  flex: 0 0 100%;
 }
 .poke-name {
   background-color: #16b0c7;
   color: #fff;
   font-size: 15px;
   padding: 10px 10px;
+}
+.poke-image {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .poke-type {
   flex: 0 0 100%;
